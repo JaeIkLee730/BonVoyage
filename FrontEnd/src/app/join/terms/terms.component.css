@@ -1,0 +1,53 @@
+h1, h4 {
+    text-align: center ;
+}
+
+.term_1 ,.term_2{
+    background-color: rgba(242,242,254,0.9) ;
+    border: 1px solid gray ;
+    width: 70% ;
+    height: 400px ;
+    padding: 15px ;
+    overflow: scroll ;
+    margin: auto ;
+}
+
+li {
+    list-style: none ;
+}
+
+#term_num {
+    text-decoration-line: underline ;
+    font-size: 20px ;
+    font-weight: bold ;
+}
+
+#term_detail_num {
+    font-size: 17px ;
+    font-weight: bold ;
+
+}
+
+.checkBox {
+    margin-top: 5px ;
+    text-align: center ;
+}
+
+.realJoin {
+    margin-top: 20px ;
+    text-align: center ;
+    margin-bottom: 100px ;
+}
+
+#acceptMent {
+    font-weight: bold ;
+    font-size: 20px ;
+}
+
+#button {
+    margin-top: 10px ;
+    width: 100px ;
+    height: 50px ;
+    font-weight: bold ;
+    font-size: 20px ;
+}

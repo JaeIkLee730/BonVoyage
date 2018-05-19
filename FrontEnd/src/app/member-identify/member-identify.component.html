@@ -1,0 +1,24 @@
+<h2>
+  Please enter your password again to confirm.
+</h2>
+
+<div class="userInfo">
+  <table>
+    <tbody>
+      <tr>
+        <td>ID</td>
+        <td>{{curr_user.id}}</td>
+      </tr>
+      <tr>
+        <td>PWD</td>
+        <td>
+          <input type="password" [(ngModel)]="pwd_check">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <button class="identify" (click)="identify()">identify</button>
+</div>

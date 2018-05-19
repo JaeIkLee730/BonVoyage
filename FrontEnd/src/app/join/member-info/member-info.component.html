@@ -1,0 +1,51 @@
+<div>
+  <h1>Your Information</h1>
+</div>
+
+<hr>
+
+<table>
+  <div class="table_body">
+    <tbody>
+      <tr>
+        <td id="item_name">NAME</td>
+        <td>
+          <input type="text" id="item_input" [(ngModel)]="name">
+        </td>
+      </tr>
+      <tr>
+        <td id="item_name">ID</td>
+        <td>
+          <input type="text" id="item_input" [(ngModel)]="id">
+        </td>
+        <button (click)="redundancyCheck(id)">redundancy check</button>
+      </tr>
+      <tr>
+        <td id="item_name">PWD</td>
+        <td>
+          <input type="password" id="item_input" [(ngModel)]="pwd">
+        </td>
+      </tr>
+      <tr>
+        <td id="item_name">PWD CHECK</td>
+        <td>
+          <input type="password" id="item_input" [(ngModel)]="pwd_check">
+        </td>
+        <td class="pwd_check" *ngIf="pwd==pwd_check">PWD MATCHES</td>
+        <td class="pwd_check" *ngIf="pwd!=pwd_check">PWD NOT MATCHES</td>
+      </tr>
+    </tbody>
+  </div>
+</table>
+
+<div ngIfclass="join_button_area" *ngIf="ifNew==true" >
+  <div class="join_button">
+    <button class="join" (click)="join(name, id, pwd, pwd_check)">join</button>
+  </div>
+</div>
+
+<div class="join_button_area" *ngIf="ifNew!=true">
+  <div class="join_button">
+    <button class="join" (click)="join(name, id, pwd, pwd_check)">modify</button>
+  </div>
+</div>

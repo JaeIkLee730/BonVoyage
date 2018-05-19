@@ -1,0 +1,40 @@
+/* .item_name_area {} */
+h1 {
+    text-align: center ;
+}
+
+table {
+    margin: auto ;
+}
+
+.table_body {
+    margin-top: 50px ;
+    width: 100% ;
+}
+
+#item_name {
+    width: 120px ;
+}
+
+#item_input {
+    width: 150px ;
+}
+
+.pwd_check {
+    width: 200px ;
+}
+
+.join_button_area {
+    width: 100% ;
+}
+
+.join_button {
+    width: 100px ;
+    margin: auto ;
+}
+
+.join {
+    width: 100% ;
+    font-size: 20px ;
+}
+

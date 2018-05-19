@@ -1,0 +1,76 @@
+.user {
+    padding: 10px ;
+}
+
+.userName {
+    font-size: 20px ;
+}
+
+.topBanner {
+    background-color: rgba(210,229,253,0.9) ;
+    width: 100% ;
+    text-align: center ;
+    font-size: 50px ;
+    padding: 50px ;
+    margin-bottom: 10px ;
+}
+
+.LPannel {
+    float: left ;
+}
+
+.cafeInfo {
+    background-color: rgba(240,240,253,0.9) ;
+    padding-left: 26px ;
+    padding-top: 15px ;
+    padding-bottom: 15px ;
+    width: 90px ;
+
+}
+
+.cafeInfoHead {
+    font-weight: bold ;
+    font-size: 20px ;
+}
+
+.cafeInfoDetails {
+    margin-top: 5px ;
+}
+
+.cafeInfoDetail {
+    font-weight: bold ;
+    font-size: 15px ;
+}
+
+.cafeInfoDetailsSub {
+    font-size:13px ;
+}
+
+.withdrawal {
+    background-color: rgba(240,240,253,0.9) ;
+    padding-top: 10px ;
+    padding-bottom: 10px ;
+    margin-bottom:20px ;
+    text-align: center ;
+    cursor: pointer;
+}
+
+.boards {
+    background-color: rgba(240,240,253,0.9) ;
+    padding-top: 10px ;
+    padding-bottom: 200px ;
+}
+
+.board {
+    font-size: 15px ;
+    padding-bottom: 10px ;
+    cursor: pointer;
+}
+
+.contents {
+    margin-left: 130px ;
+    margin-right: 10px ;
+    padding: 10px 40px ;
+    background-color: rgba(251, 244, 229, 0.9) ;
+    text-align: center ;
+}

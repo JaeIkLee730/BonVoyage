@@ -1,0 +1,54 @@
+<h1>Join Us!!</h1>
+
+<hr>
+
+<h4>Terms_of_Use_1</h4>
+<div class="term_1">
+  <div *ngFor="let index of [0,1,2,3,4,5]">
+    <span id="term_num">term_{{index}}</span>    
+    <ul>
+      <li *ngFor="let index of [0,1,2,3,4,5]">
+        <span id="term_detail_num" >{{ index }}.</span>
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+      </li>
+    </ul>  
+  </div>
+</div>
+<div class="checkBox">
+  <input type="checkbox" [(ngModel)]="term_1_accept"> accept
+</div>
+<br>
+<br>
+
+<h4>Terms_of_Use_2</h4>
+<div class="term_2">
+  <div *ngFor="let index of [0,1,2,3,4,5]">
+    <span id="term_num">term_{{index}}</span>    
+    <ul>
+      <li *ngFor="let index of [0,1,2,3,4,5]">
+        <span id="term_detail_num" >{{ index }}.</span>
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+        blah blah blah blah blah blah blah blah blah blah blah blah 
+      </li>
+    </ul>  
+  </div>
+</div>
+<div class="checkBox">
+  <input type="checkbox" [(ngModel)]="term_2_accept"> accept
+</div>
+<br>
+<br>
+<div class="realJoin">
+  <div id="acceptMent">
+    I accept all the clause
+  </div>
+  <button id="button" (click)="toMemberInfoPage()">OK</button>
+</div>
+
+<!-- entire screen scrolling -->
+<!-- Terms of Use scrolling -->

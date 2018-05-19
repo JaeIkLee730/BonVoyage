@@ -1,0 +1,104 @@
+.selection {
+    height: 30px ;
+    margin-left: 5px ;
+    margin-right: 5px ;
+}
+
+.searchArea {
+    padding-top: 30px ;
+    padding-bottom: 30px ;
+}
+
+.searchBar {
+    width: 400px ;
+    margin: auto ;
+}
+
+.keyword{
+    padding: 20px 10px ;
+    font-size: 12px ;
+}
+
+.searchButton {
+    padding: 20px 10px ;
+    background-color: rgba(220,220,253, 0.8) ;
+    cursor: pointer;
+}
+
+.curr_post {
+    margin: 10px ;
+    /* overflow : scroll ; */
+}
+
+.curr_post_head {
+    width: 100% ;
+    text-align: center ;
+}
+
+.curr_post_body{
+    text-align: left ;
+}
+
+.textarea{
+    font-size: 20px ;
+}
+
+.write_button_area {
+    margin-bottom: 10px ;
+    text-align: right ;
+}
+
+.write_button {
+    font-size: 20px ;
+}
+
+table {
+    border-collapse: collapse ;
+}
+
+tr {
+    width: 100% ;
+}
+
+.no {
+    width : 50px ;
+}
+
+.title { 
+    width : 500px ;
+    overflow : hidden ;
+}
+
+.writer { 
+    width : 200px ;
+}
+
+.date { 
+    width : 100px ;
+    overflow : hidden ;
+}
+
+th {
+    border-bottom: 2px solid black ;
+    line-height: 30px ;
+}
+
+td {
+    padding : 5px ;
+    border-bottom: 1px solid black ;
+    line-height: 15px ;
+}
+
+.clickAvailable {
+    cursor: pointer ;
+}
+
+.postPage {
+    margin-top : 20px ;
+    font-size: 30px ;
+}
+
+.pagingButton {
+    font-size: 30px ;
+    margin: 10px ;
+}

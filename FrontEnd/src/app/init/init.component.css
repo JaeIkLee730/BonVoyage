@@ -1,0 +1,37 @@
+.welcome{
+    text-align: center ;
+}
+
+.loginBox {
+    width: 100% ;
+    margin: auto ;
+    background-color: aliceblue ;
+    padding : 30px ;
+}
+
+.input {
+    width: 169px ;
+    margin: auto ;
+    margin-bottom: 10px
+}
+
+#id, #pwd {
+    padding-right: 5px ;
+}
+
+.button {
+    width: 150px ;
+    margin: auto ;
+}
+
+.login, .join {
+    width: 100% ;
+}
+
+.login {
+    color: rebeccapurple ;
+}
+
+.join {
+    color: chartreuse ;
+}

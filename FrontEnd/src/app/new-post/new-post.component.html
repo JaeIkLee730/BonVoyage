@@ -1,0 +1,24 @@
+<!-- list of posts -->
+<div style="font-size: 30px; margin:20px;">new-post</div>
+<hr>
+<div class="new-post"*ngFor="let post_list of post_lists">
+  <table>
+    <thead>board_no</thead>
+    <thead>
+      <th class="no">no</th>
+      <th class="title">title</th>
+      <th class="writer">wirter</th>
+      <th class="date">date</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of post_list">
+        <td>{{post.post_no}}</td>
+        <td class="clickAvailable" (click)="toPost(post)">
+          {{post.post_title}}
+        </td>
+        <td>{{post.user_id}}</td>
+        <td>{{post.written_date}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

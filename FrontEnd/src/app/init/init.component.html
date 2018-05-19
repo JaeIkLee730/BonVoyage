@@ -1,0 +1,23 @@
+<h1 class="welcome">WELCOME TO CAFE_NAME</h1>
+<hr>
+
+<div class="loginBox">
+  <div class="input">
+    <tr class="id">
+      <td id="id">ID</td>
+      <td>
+        <input [(ngModel)]="idInput" >
+      </td>
+    </tr>
+    <tr class="pwd">
+      <td id="pwd">PWD</td>
+      <td>
+        <input type="password" [(ngModel)]="pwdInput" >
+      </td>
+    </tr>
+  </div>
+  <div class="button">
+    <button class="login" (click)="login(idInput, pwdInput)">login</button>
+    <button class="join" (click)="join()">join</button>
+  </div>
+</div>

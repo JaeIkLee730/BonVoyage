@@ -1,0 +1,68 @@
+<!-- logout button -->
+<div class="user" *ngIf="userName==null || userName==undefined || userName=='' ">
+  <span class="userName">visitor</span>
+  <input type="text" [(ngModel)]="login_id">
+  <input type="password" [(ngModel)]="login_pwd">
+  <button class="logoutButton" (click)="login()">login</button>
+  <button class="logoutButton" (click)="join()">join</button>
+</div>
+
+<div class="user" *ngIf="userName!=null && userName!=undefined && userName!='' ">
+  <span class="userName">{{userName}}</span>
+  <button class="logoutButton" (click)="logout()">logout</button>
+</div>
+
+<!-- top banner -->
+<div class="topBanner" (click)="toMain()">Bon Voyage</div>
+
+
+<div class="LPannel">
+
+  <!-- cafe information -->
+  <div class="cafeInfo">
+    <div class="cafeInfoHead">{{userName}}</div>
+    <hr width = 70 align=left >
+    <div class="cafeInfoDetails">
+      <div class="cafeInfoDetail">Plans</div>
+      <div class="cafeInfoDetailsSub">00 plans</div>
+    </div>
+    <div class="cafeInfoDetails">
+      <div class="cafeInfoDetail">Reviews</div>
+      <div class="cafeInfoDetailsSub">00 reviews</div>
+    </div>
+    <div class="cafeInfoDetails">
+      <div class="cafeInfoDetail">Like</div>
+      <div class="cafeInfoDetailsSub">00 likes</div>
+    </div>
+    <hr width = 70 align=left >
+        <!-- TODO: click MYPAGE -> move to MY_PAGE -->
+    <div class="cafeInfoDetails">
+      <div class="cafeInfoDetailsSub">My Page</div>
+    </div>
+  </div>
+
+  <!-- boards navi -->
+  <nav>
+    <ul class="boards">
+      <li class="board" (click)="getBoard(1)">board1</li>
+      <li class="board" (click)="getBoard(2)">board2</li>
+      <li class="board" (click)="getBoard(3)">board3</li>
+    </ul>
+  </nav>
+  <div class="withdrawal" (click)="toIdentifyPage(0)">
+    <div>
+      Membership
+      <br> Withdrawal
+    </div>
+  </div>
+  <div class="withdrawal" (click)="toIdentifyPage(1)">
+    <div>
+      MemberInfo
+      <br> Modification
+    </div>
+  </div>
+</div>
+
+<div class="contents">
+  <router-outlet></router-outlet>
+</div>
