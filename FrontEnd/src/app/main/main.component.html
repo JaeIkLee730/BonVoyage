@@ -5,22 +5,26 @@
   <input type="password" [(ngModel)]="login_pwd">
   <button class="logoutButton" (click)="login()">login</button>
   <button class="logoutButton" (click)="join()">join</button>
+  <span class="toMain" (click)="toMain()">Home</span>
 </div>
 
 <div class="user" *ngIf="userName!=null && userName!=undefined && userName!='' ">
-  <span class="userName">{{userName}}</span>
+  <span class="userName">{{userName}}  </span>
   <button class="logoutButton" (click)="logout()">logout</button>
+  <span class="toMain" (click)="toMain()">Home</span>
 </div>
 
+
 <!-- top banner -->
-<div class="topBanner" (click)="toMain()">Bon Voyage</div>
+<div class="topBanner">Make Plan</div>
 
 
+<!-- L top -->
 <div class="LPannel">
-
   <!-- cafe information -->
   <div class="cafeInfo">
     <div class="cafeInfoHead">{{userName}}</div>
+    <div class="cafeInfoDetailsSub">{{userId}}</div>
     <hr width = 70 align=left >
     <div class="cafeInfoDetails">
       <div class="cafeInfoDetail">Plans</div>
@@ -37,11 +41,12 @@
     <hr width = 70 align=left >
         <!-- TODO: click MYPAGE -> move to MY_PAGE -->
     <div class="cafeInfoDetails">
-      <div class="cafeInfoDetailsSub">My Page</div>
+      <div class="cafeInfoDetailsSub" id="MyPage" (click)="toMyPage()" >My Page</div>
     </div>
   </div>
 
-  <!-- boards navi -->
+
+  <!-- L-bottom boards navi -->
   <nav>
     <ul class="boards">
       <li class="board" (click)="getBoard(1)">board1</li>

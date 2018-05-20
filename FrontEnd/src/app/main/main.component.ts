@@ -13,6 +13,7 @@ export class MainComponent implements OnInit {
   login_id: any ;
   login_pwd: any ;
   userName: any = null ;
+  userId: any = null ;
   curr_user: any
   num_members: any = {
     cnt:0
@@ -26,6 +27,7 @@ export class MainComponent implements OnInit {
     this.numMembers();
     if ( this.curr_user = this.member.getCurrentUser() ){
       this.userName = this.curr_user.name;
+      this.userId = this.curr_user.id ;
     }
   }
 
@@ -39,6 +41,19 @@ export class MainComponent implements OnInit {
   toMain() {
     this.router.navigate(['main',]) ;
     // blnak - connect to path:''
+  }
+
+  toIdentifyPage( identify_type ) {
+    try {
+      this.curr_user = this.member.getCurrentUser() ;
+      this.router.navigate(['main', 'memberIdentify'], { queryParams: { identify_type: identify_type } }) ;
+    } catch(e) {
+      alert("You are a visitor. Log in please.") ;
+    }
+  }
+
+  toMyPage() {
+    this.router.navigate(['main','myPage']) ;
   }
 
   numMembers() {
@@ -69,13 +84,6 @@ export class MainComponent implements OnInit {
 
   // identify_type==0 : withdrawal
   // identify_type==1 : modification
-  toIdentifyPage( identify_type ) {
-    try {
-      this.curr_user = this.member.getCurrentUser() ;
-      this.router.navigate(['main', 'memberIdentify'], { queryParams: { identify_type: identify_type } }) ;
-    } catch(e) {
-      alert("You are a visitor. Log in please.") ;
-    }
-  }
+
 
 }

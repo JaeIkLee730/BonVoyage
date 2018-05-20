@@ -14,6 +14,12 @@ export class MemberComponent implements OnInit {
   name: any ;
   id: any ;
   pwd: any ;
+  age: any ;
+  gender: any ;
+  email: any ;
+  birth: any ;
+  phone: any ;
+
   
   constructor( private router: Router, private http: HttpClient ) { }
 
@@ -30,6 +36,11 @@ export class MemberComponent implements OnInit {
     .subscribe( (item:any)=> {
       this.name = item.name ;
       this.user_no = item.user_no ; 
+      this.age = item.age ;
+      this.gender = item.gender ;
+      this.email = item.email ; 
+      this.birth = item.birth ;
+      this.phone = item.phone ;
 
       this.setCurrentUser(item) ;
       this.router.navigate(['main']) ;  

@@ -14,6 +14,7 @@ import { TermsComponent } from './join/terms/terms.component';
 import { MemberInfoComponent } from './join/member-info/member-info.component';
 import { MemberIdentifyComponent } from './member-identify/member-identify.component';
 import { MemberComponent } from './member/member.component';
+import { MyPageComponent } from './my-page/my-page.component';
 
 import { BoardComponent } from './board/board.component';
 import { NewPostComponent } from './new-post/new-post.component';
@@ -55,6 +56,10 @@ const appRoutes:Routes = [
       {
         path: 'memberIdentify',
         component: MemberIdentifyComponent
+      },
+      {
+        path: 'myPage',
+        component: MyPageComponent
       }
     ]
   },
@@ -73,6 +78,7 @@ const appRoutes:Routes = [
     MemberInfoComponent,
     MemberComponent,
     MemberIdentifyComponent,
+    MyPageComponent,
   ],
   imports: [
     HttpModule,

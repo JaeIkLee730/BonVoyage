@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
     password : 'ctvy',
-    database : 'linux'
+    database : 'DB'
 });
 
 // counting num of members
@@ -15,7 +15,7 @@ router.get('/', function(req, res, next){
 
   // var sql = "select * from linux.users" ;
 
-  var sql = "select count(*) 'cnt' from linux.users"
+  var sql = "select count(*) 'cnt' from BonVoyage.users"
   //  count(*) 라는 이름으로 넘어온다 - 불편 - cnt라는 이름으로 바꿔서 넘겨준다
 
   connection.query( sql, function(error, result, fields){
@@ -31,7 +31,7 @@ router.post('/login/', function(req, res){
 
     console.log(req.body) ;
 
-    var sql = "select * from linux.users where id=? and pwd=? ;" ;
+    var sql = "select * from BonVoyage.users where id=? and pwd=? ;" ;
 
     connection.query(sql, [id, pwd], function(error, result){
        if( result.length === 0 ){

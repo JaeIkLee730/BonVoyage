@@ -32,6 +32,8 @@ var members = require('./routes/members') ;
 app.use('/members', members) ;
 var board = require('./routes/board') ;
 app.use('/board', board) ;
+var travel = require('./routes/travel') ;
+app.use('/travel', travel) ;
 
 
 // catch 404 and forward to error handler

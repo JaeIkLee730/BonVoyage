@@ -6,6 +6,12 @@
     font-size: 20px ;
 }
 
+.toMain {
+    padding: 10px ;
+    font-size: 15px ;
+    cursor: pointer ;
+}
+
 .topBanner {
     background-color: rgba(210,229,253,0.9) ;
     width: 100% ;
@@ -44,6 +50,10 @@
 
 .cafeInfoDetailsSub {
     font-size:13px ;
+}
+
+#MyPage {
+    cursor: pointer;
 }
 
 .withdrawal {

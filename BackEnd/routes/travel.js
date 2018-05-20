@@ -22,12 +22,12 @@ router.get('/:no/:start_no/:display_no', function(req, res, next){
         post_list : null
     }
 
-    var sql1 = "select count(*) 'post_cnt' from linux.board"
+    var sql1 = "select count(*) 'post_cnt' from BonVoyage.travel"
         + board_no ;
 
     console.log("sql1 : ",sql1) ;
 
-    var sql2 = "select * from linux.board"
+    var sql2 = "select * from BonVoyage.travel"
         + board_no
         + " order by post_no desc"
         + " limit "
@@ -48,16 +48,14 @@ router.get('/:no/:start_no/:display_no', function(req, res, next){
     });
 });
 
-// get all boards
+// get all travels
 router.get('/all', function(req, res, next){
 
     var start_no = 0;
     var display_no = 4;
-    var resultList = new Array(3) ;
 
     // board1
-    var sql = "select * from linux.board"
-        + 1
+    var sql = "select * from Bonvoyage.travel"
         + " order by post_no desc"
         + " limit "
         + start_no
@@ -67,38 +65,7 @@ router.get('/all', function(req, res, next){
 
     connection.query(sql, function (error, result, fields) {
         if (error) throw error;
-        resultList[0] = result;
-
-        // board2
-        var sql = "select * from linux.board"
-            + 2
-            + " order by post_no desc"
-            + " limit "
-            + start_no
-            + ","
-            + display_no
-            + ";" ;
-
-        connection.query(sql, function (error, result, fields) {
-            if (error) throw error;
-            resultList[1] = result;
-
-            // board3
-            var sql = "select * from linux.board"
-                + 3
-                + " order by post_no desc"
-                + " limit "
-                + start_no
-                + ","
-                + display_no
-                + ";" ;
-
-            connection.query(sql, function (error, result, fields) {
-                if (error) throw error;
-                resultList[2] = result;
-                res.send(resultList) ;
-            });
-        });
+        res.send(result) ;
     });
 
 });
@@ -117,12 +84,12 @@ router.post('/search/:no', function(req, res, next){
     console.log(req.body) ;
 
     var sql1 = "select * from linux.board"
-                + board_no
-                + " where post_title like concat('%', ?, '%') order by post_no desc;" ;
+        + board_no
+        + " where post_title like concat('%', ?, '%') order by post_no desc;" ;
 
     var sql2 = "select * from linux.board"
-                + board_no
-                + " where user_id like concat('%', ?, '%') order by post_no desc;" ;
+        + board_no
+        + " where user_id like concat('%', ?, '%') order by post_no desc;" ;
 
     connection.query(sql1, [post_title], function(error, results, fields){
         if( error ) throw error ;
@@ -147,8 +114,8 @@ router.post('/post/:no', function(req, res, next){
     console.log(req.body) ;
 
     var sql = "insert into linux.board"
-                + board_no
-                + " (user_id, post_title, post_contents) values (?,?,?) ;"
+        + board_no
+        + " (user_id, post_title, post_contents) values (?,?,?) ;"
 
     connection.query(sql, [user_id, post_title, post_contents], function(error, results, fields){
         if( error ) throw error ;
@@ -183,8 +150,8 @@ router.delete('/:board_no/:post_no', function(req, res, next) {
     var board_no = req.params.board_no ;
     var post_no = req.params.post_no ;
     var sql = "delete from linux.board"
-                + board_no
-                + " where post_no=?" ;
+        + board_no
+        + " where post_no=?" ;
 
     connection.query(sql, [post_no], function (error, results, fields) {
         if (error) throw error;

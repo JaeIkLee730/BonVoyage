@@ -1,0 +1,218 @@
+<!-- now showing a selected post -->
+<div class="curr_post" *ngIf="current_post!=undefined && current_post!=null && writing!=true">
+  <hr>
+  <table>
+    <thead class="curr_post_head">
+      <th class="no">no.{{current_post.post_no}} </th>
+      <th>{{current_post.post_title}}</th>
+    </thead>
+  </table>
+  <br>
+  <div class="curr_post_body">
+    <div>writer : {{current_post.user_id}}</div>
+    <div>date : {{current_post.written_date}}</div>
+    <br>
+    <br>
+    <div [innerHTML]="current_post.post_contents"></div>
+    <br>
+    <br>
+  </div>
+</div>
+
+<input type="date" name="bday">
+
+<!-- writing a post -->
+<div *ngIf="writing==true">
+  <hr>
+  <div>
+    <select class="selection" [(ngModel)]="boardSel">
+      <option [value]="1">board1</option>
+      <option [value]="2">board2</option>
+      <option [value]="3">board3</option>
+    </select>
+    writer : {{curr_user.id}}
+  </div>
+  <br>
+  <div style="font-size:20px">-----title-----</div>
+  <textarea class="textarea" cols="80" rows="2" [(ngModel)]="user_written_title"></textarea>
+  <div style="font-size:20px">-----contents-----</div>
+  <textarea class="textarea" cols="80" rows="30" [(ngModel)]="user_written_text"></textarea>
+  <br>
+  <button *ngIf="modifying!=true" class="write_button" (click)="post()">post</button>
+  <button *ngIf="modifying==true" class="write_button" (click)="postModified()">post</button>
+</div>
+
+<div class="write_button_area" *ngIf="writing!=true">
+  <button class="write_button" (click)="write()">write</button>
+</div>
+
+
+
+<!-- user information -->
+<hr>
+<table>
+  <thead class="infoHead">My info</thead>
+  <thead>
+    <th class="field"></th>
+    <th class="value"></th>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>NAME</td>
+      <td>{{curr_user.name}}</td>
+    </tr>
+    <tr class="info">
+      <td>ID</td>
+      <td>{{curr_user.id}}</td>
+    </tr>
+    <tr class="info">
+      <td>age</td>
+      <td>{{curr_user.age}}</td>
+    </tr>
+    <tr class="info">
+      <td>gender</td>
+      <td>{{curr_user.gender}}</td>
+    </tr>
+    <tr class="info">
+      <td>birth</td>
+      <td>{{curr_user.birth}}</td>
+    </tr>
+    <tr class="info">
+      <td>email</td>
+      <td>{{curr_user.email}}</td>
+    </tr>
+    <tr class="info">
+      <td>phone</td>
+      <td>{{curr_user.phone}}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- list of plans -->
+<hr>
+<table>
+  <thead>Plans</thead>
+  <thead>
+    <th class="no">no</th>
+    <th class="written date">start</th>    
+    <th class="title">title</th>
+    <th></th>
+    <th></th>
+    <th class="writer">start</th>
+    <th class="date">end</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let travel of travel_list">
+      <td>{{plan.plan_no}}</td>
+      <td>{{plan.written_date}}</td>
+      <td class="clickAvailable" (click)="toPost(post)">
+        {{plan.title}}
+      </td>
+      <td>
+        <!-- modify plan -->
+        <button *ngIf="ifMyPost(post.user_id)" (click)="modify(post)">modify</button>
+      </td>
+      <td>
+        <!-- delete plan -->
+        <button *ngIf="ifMyPost(post.user_id)" (click)="delete(post.post_no)">delete</button>
+      </td>
+      <td>{{plan.start_date}}</td>
+      <td>{{plan.end_date}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="postPage">
+  <button class="pagingButton" (click)="toPrevPostPage()">prev</button>
+  {{post_page_no}}
+  <button class="pagingButton" (click)="toNextPostPage()">next</button>
+</div>
+
+<!-- list of Reviews -->
+<hr>
+<table>
+  <thead>Reviews</thead>
+  <thead>
+    <th class="no">no</th>
+    <th class="title">title</th>
+    <th></th>
+    <th></th>
+    <th class="writer">wirter</th>
+    <th class="date">date</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of post_list">
+      <td>{{post.post_no}}</td>
+      <td class="clickAvailable" (click)="toPost(post)">
+        {{post.post_title}}
+      </td>
+      <td>
+        <!-- modify post -->
+        <button *ngIf="ifMyPost(post.user_id)" (click)="modify(post)">modify</button>
+      </td>
+      <td>
+        <!-- delete post -->
+        <button *ngIf="ifMyPost(post.user_id)" (click)="delete(post.post_no)">delete</button>
+      </td>
+      <td>{{post.user_id}}</td>
+      <td>{{post.written_date}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="postPage">
+  <button class="pagingButton" (click)="toPrevPostPage()">prev</button>
+  {{post_page_no}}
+  <button class="pagingButton" (click)="toNextPostPage()">next</button>
+</div>
+
+<!-- list of likes -->
+<hr>
+<table>
+  <thead>Likes</thead>
+  <thead>
+    <th class="no">no</th>
+    <th class="title">title</th>
+    <th></th>
+    <th></th>
+    <th class="writer">wirter</th>
+    <th class="date">date</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of post_list">
+      <td>{{post.post_no}}</td>
+      <td class="clickAvailable" (click)="toPost(post)">
+        {{post.post_title}}
+      </td>
+      <td>
+        <!-- modify post -->
+        <button *ngIf="ifMyPost(post.user_id)" (click)="modify(post)">modify</button>
+      </td>
+      <td>
+        <!-- delete post -->
+        <button *ngIf="ifMyPost(post.user_id)" (click)="delete(post.post_no)">delete</button>
+      </td>
+      <td>{{post.user_id}}</td>
+      <td>{{post.written_date}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="postPage">
+  <button class="pagingButton" (click)="toPrevPostPage()">prev</button>
+  {{post_page_no}}
+  <button class="pagingButton" (click)="toNextPostPage()">next</button>
+</div>
+
+<!-- search post -->
+<div class="searchArea">
+  <div class="searchBar">
+    <select class="selection" [(ngModel)]="type">
+      <option [value]="0">title</option>
+      <option [value]="1">writer</option>
+    </select>
+    <input class="keyword" [(ngModel)]="keyword">
+    <span class="searchButton" (click)="search()">search</span>
+  </div>
+</div>
