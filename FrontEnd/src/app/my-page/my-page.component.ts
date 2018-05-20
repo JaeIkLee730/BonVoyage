@@ -24,6 +24,7 @@ export class MyPageComponent implements OnInit {
 
   ngOnInit() {
     this.curr_user = this.member.getCurrentUser() ;
+    this.getTravel() ;
   }
 
   getTravel() {
@@ -32,13 +33,14 @@ export class MyPageComponent implements OnInit {
     } else {
       // console.log("current_travel_no", this.current_travel_no) ;
       this.http
-      .get(`http://localhost:3000/plan/`
-            + `${this.current_travel_no}/`
+      .get(`http://localhost:3000/travel/user_travel/`
+            + `${this.curr_user.user_no}/`
             + `${this.start_no}/`
             + `${this.display_no}`)
       .subscribe( (item:any)=> {
         // this.current_post = null ;
         this.travel_list = item.travel_list ;
+        console.log("travel list:", this.travel_list) ;
         return this.travel_list ;
       })
     }

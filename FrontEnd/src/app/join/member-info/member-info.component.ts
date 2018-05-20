@@ -15,6 +15,12 @@ export class MemberInfoComponent implements OnInit {
   id: any ;
   pwd: any ;
   pwd_check: any ;
+  age: any ;
+  gender: any ;
+  birth: any ;
+  email: any ;
+  phone: any ;
+  
   curr_user: any = null ;
   ifNew: boolean = true ;
 
@@ -98,7 +104,7 @@ export class MemberInfoComponent implements OnInit {
       alert("Check if the passwords matches.") ;
     } else if( this.ifNew ){
       console.log("done") ;
-      alert("Welcome to CAFE_NAME!!") ;
+      alert(this.name + "(" + this.id + "), " + "Welcome to Bon Voyage!!") ;
       this.acceptMember( this.name, this.id, this.pwd ) ;
     } else {
       this.modifyMemberInfo( this.name, this.id, this.pwd ) ;
@@ -110,9 +116,14 @@ export class MemberInfoComponent implements OnInit {
     let body = {
       name: name,
       id: id,
-      pwd: pwd
+      pwd: pwd,
+      age: this.age,
+      gender: this.gender,
+      birth: this.birth,
+      phone: this.phone,
+      email: this.email
     }
-    this.http.post(`http://localhost:3000/members/`, body)
+    this.http.post(`http://localhost:3000/members/join/`, body)
     .subscribe( (item:any)=> {
       this.router.navigate(['main']) ;
     })

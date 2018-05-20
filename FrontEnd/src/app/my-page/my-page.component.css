@@ -6,3 +6,35 @@
 .info {
     text-align: left ;
 }
+
+.table_head {
+    font-weight: bold ;
+    font-size: 20px ;
+}
+
+.selection {
+    height: 30px ;
+    margin-left: 5px ;
+    margin-right: 5px ;
+}
+
+.searchArea {
+    padding-top: 30px ;
+    padding-bottom: 30px ;
+}
+
+.searchBar {
+    width: 400px ;
+    margin: auto ;
+}
+
+.keyword{
+    padding: 20px 10px ;
+    font-size: 12px ;
+}
+
+.searchButton {
+    padding: 20px 10px ;
+    background-color: rgba(220,220,253, 0.8) ;
+    cursor: pointer;
+}

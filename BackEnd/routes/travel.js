@@ -7,42 +7,41 @@ var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
     password : 'ctvy',
-    database : 'DB'
+    database : 'BonVoyage'
 });
 
-// getting list of the posts in a board
-router.get('/:no/:start_no/:display_no', function(req, res, next){
+// getting certain user's travels
+router.get('/user_travel/:user_no/:start_no/:display_no', function(req, res, next){
 
-    var board_no = req.params.no ;
     var start_no = req.params.start_no ;
     var display_no = req.params.display_no ;
+    var user_no = req.params.user_no ;
 
     var resultList = {
-        post_cnt : 0,
-        post_list : null
+        travel_cnt : 0,
+        travel_list : null
     }
 
-    var sql1 = "select count(*) 'post_cnt' from BonVoyage.travel"
-        + board_no ;
+    var sql1 = "select count(*) 'travel_cnt' from BonVoyage.travel where user_no=" + user_no ;
 
     console.log("sql1 : ",sql1) ;
 
     var sql2 = "select * from BonVoyage.travel"
-        + board_no
-        + " order by post_no desc"
+        + " where user_no=" + user_no
+        + " order by travel_no desc"
         + " limit "
         + start_no
         + ","
         + display_no
         + ";" ;
 
-    connection.query(sql1, function(error, result, fields) {
+    connection.query(sql1, [user_no], function(error, result, fields) {
         if( error ) throw error ;
-        resultList.post_cnt = result ;
+        resultList.travel_cnt = result ;
 
-        connection.query(sql2, function(error, results, fields) {
+        connection.query(sql2, [user_no], function(error, results, fields) {
             if( error ) throw error ;
-            resultList.post_list = results ;
+            resultList.travel_list = results ;
             res.send(resultList) ;
         });
     });
@@ -55,8 +54,8 @@ router.get('/all', function(req, res, next){
     var display_no = 4;
 
     // board1
-    var sql = "select * from Bonvoyage.travel"
-        + " order by post_no desc"
+    var sql = "select * from BonVoyage.travel"
+        + " order by travel_no desc"
         + " limit "
         + start_no
         + ","

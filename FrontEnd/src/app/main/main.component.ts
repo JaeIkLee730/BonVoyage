@@ -56,6 +56,10 @@ export class MainComponent implements OnInit {
     this.router.navigate(['main','myPage']) ;
   }
 
+  toMakePlan() {
+    this.router.navigate(['main','makePlan']) ;
+  }
+
   numMembers() {
     this.http.get(`http://localhost:3000/members`)
     .subscribe( (item:any)=> {

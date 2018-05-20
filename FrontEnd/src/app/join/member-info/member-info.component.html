@@ -34,11 +34,45 @@
         <td class="pwd_check" *ngIf="pwd==pwd_check">PWD MATCHES</td>
         <td class="pwd_check" *ngIf="pwd!=pwd_check">PWD NOT MATCHES</td>
       </tr>
+
+      <tr>
+        <td id="item_name">AGE</td>
+        <td>
+          <input type="number" min="0" max="150" id="item_input" [(ngModel)]="age">
+        </td>
+      </tr>
+      <tr>
+        <td id="item_name">GENDER</td>
+        <td>
+          <form>
+            <input type="radio" name="gender" value="M" [(ngModel)]="gender" checked> Male
+            <input type="radio" name="gender" value="W" [(ngModel)]="gender"> Female
+          </form>
+        </td>
+      </tr>
+      <tr>
+        <td id="item_name">BIRTH</td>
+        <td>
+          <input type="date" id="item_input" [(ngModel)]="birth">
+        </td>
+      </tr>
+      <tr>
+        <td id="item_name">PHONE</td>
+        <td>
+          <input type="tel" id="item_input" [(ngModel)]="phone">
+        </td>
+      </tr>
+      <tr>
+        <td id="item_name">EMAIL</td>
+        <td>
+          <input type="email" id="item_input" [(ngModel)]="email">
+        </td>
+      </tr>
     </tbody>
   </div>
 </table>
 
-<div ngIfclass="join_button_area" *ngIf="ifNew==true" >
+<div ngIfclass="join_button_area" *ngIf="ifNew==true">
   <div class="join_button">
     <button class="join" (click)="join(name, id, pwd, pwd_check)">join</button>
   </div>

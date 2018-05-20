@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
     password : 'ctvy',
-    database : 'DB'
+    database : 'BonVoayge'
 });
 
 // getting list of the posts in a board

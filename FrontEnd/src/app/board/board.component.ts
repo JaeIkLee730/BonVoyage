@@ -14,6 +14,8 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   post_page_no: number = 1 ;
   post_cnt: number ;
+
+  // how many post would be shown
   start_no: number = 0 ;
   display_no: number = 5 ;
 

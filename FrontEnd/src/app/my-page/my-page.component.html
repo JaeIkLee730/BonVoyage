@@ -21,33 +21,6 @@
 
 <input type="date" name="bday">
 
-<!-- writing a post -->
-<div *ngIf="writing==true">
-  <hr>
-  <div>
-    <select class="selection" [(ngModel)]="boardSel">
-      <option [value]="1">board1</option>
-      <option [value]="2">board2</option>
-      <option [value]="3">board3</option>
-    </select>
-    writer : {{curr_user.id}}
-  </div>
-  <br>
-  <div style="font-size:20px">-----title-----</div>
-  <textarea class="textarea" cols="80" rows="2" [(ngModel)]="user_written_title"></textarea>
-  <div style="font-size:20px">-----contents-----</div>
-  <textarea class="textarea" cols="80" rows="30" [(ngModel)]="user_written_text"></textarea>
-  <br>
-  <button *ngIf="modifying!=true" class="write_button" (click)="post()">post</button>
-  <button *ngIf="modifying==true" class="write_button" (click)="postModified()">post</button>
-</div>
-
-<div class="write_button_area" *ngIf="writing!=true">
-  <button class="write_button" (click)="write()">write</button>
-</div>
-
-
-
 <!-- user information -->
 <hr>
 <table>
@@ -92,7 +65,7 @@
 <!-- list of plans -->
 <hr>
 <table>
-  <thead>Plans</thead>
+  <thead class="table_head">Plans</thead>
   <thead>
     <th class="no">no</th>
     <th class="written date">start</th>    
@@ -104,21 +77,21 @@
   </thead>
   <tbody>
     <tr *ngFor="let travel of travel_list">
-      <td>{{plan.plan_no}}</td>
-      <td>{{plan.written_date}}</td>
+      <td>{{travel.travel_no}}</td>
+      <td>{{travel.written_date}}</td>
       <td class="clickAvailable" (click)="toPost(post)">
-        {{plan.title}}
+        {{travel.title}}
       </td>
       <td>
         <!-- modify plan -->
-        <button *ngIf="ifMyPost(post.user_id)" (click)="modify(post)">modify</button>
+        <!-- <button *ngIf="ifMyPost(travel.user_id)" (click)="modify(travel)">modify</button> -->
       </td>
       <td>
         <!-- delete plan -->
-        <button *ngIf="ifMyPost(post.user_id)" (click)="delete(post.post_no)">delete</button>
+        <!-- <button *ngIf="ifMyPost(travel.user_id)" (click)="delete(travel.travel_no)">delete</button> -->
       </td>
-      <td>{{plan.start_date}}</td>
-      <td>{{plan.end_date}}</td>
+      <td>{{travel.start_date}}</td>
+      <td>{{travel.end_date}}</td>
     </tr>
   </tbody>
 </table>
@@ -205,6 +178,8 @@
   <button class="pagingButton" (click)="toNextPostPage()">next</button>
 </div>
 
+<br><br><br>
+<hr>
 <!-- search post -->
 <div class="searchArea">
   <div class="searchBar">
