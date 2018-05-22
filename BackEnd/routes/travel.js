@@ -69,6 +69,31 @@ router.get('/all', function(req, res, next){
 
 });
 
+
+// get country list
+router.get('/country/', function(req, res, next){
+
+    var sql = "select * from BonVoyage.country" ;
+
+    connection.query(sql, function(error, results, fields) {
+        if( error ) throw error ;
+        res.send(results) ;
+    });
+}) ;
+
+// get city list
+router.get('/city/:no', function(req, res, next){
+
+    var country_no = req.params.no ;
+    var sql = "select * from BonVoyage.city where country_no=?" ;
+
+    connection.query(sql, [country_no], function(error, results, fields) {
+        if( error ) throw error ;
+        res.send(results) ;
+    });
+}) ;
+
+
 // searching posts by keyword - by title / by writer id
 router.post('/search/:no', function(req, res, next){
 

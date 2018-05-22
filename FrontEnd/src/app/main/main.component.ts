@@ -56,7 +56,7 @@ export class MainComponent implements OnInit {
     this.router.navigate(['main','myPage']) ;
   }
 
-  toMakePlan() {
+  toTravel() {
     this.router.navigate(['main','makePlan']) ;
   }
 

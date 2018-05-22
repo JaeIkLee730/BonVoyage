@@ -22,6 +22,7 @@ import { NewPostComponent } from './new-post/new-post.component';
 
 import { HttpService } from '../services/http.service';
 import { HttpModule } from '@angular/http';
+import { MakeWishComponent } from './make-wish/make-wish.component';
 
 const appRoutes:Routes = [
   {
@@ -85,6 +86,7 @@ const appRoutes:Routes = [
     MemberIdentifyComponent,
     MyPageComponent,
     MakePlanComponent,
+    MakeWishComponent,
   ],
   imports: [
     HttpModule,
@@ -98,7 +100,7 @@ const appRoutes:Routes = [
   providers: [ 
     HttpService,
     MemberComponent,
-    BoardComponent
+    BoardComponent,
   ],
   bootstrap: [AppComponent]
 })

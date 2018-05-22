@@ -1,19 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BoardComponent } from './board.component';
 
-describe('BoardComponent', () => {
-  let component: BoardComponent;
-  let fixture: ComponentFixture<BoardComponent>;
+import { MakeWishComponent } from './make-wish.component';
+
+describe('MakeWishComponent', () => {
+  let component: MakeWishComponent;
+  let fixture: ComponentFixture<MakeWishComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BoardComponent ]
+      declarations: [ MakeWishComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BoardComponent);
+    fixture = TestBed.createComponent(MakeWishComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
