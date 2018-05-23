@@ -13,16 +13,29 @@ export class MakePlanComponent implements OnInit {
   curr_user: any = null;
 
   title: any;
-  contents: any;
+  description: any ;
   start_date: any;
   end_date: any;
   no_companion: any;
 
-  country_list: any;
-  city_list: any;
+  in_country_list: any ;
+  out_country_list: any ;
+  in_city_list: any ;
+  out_city_list: any ;
 
-  selected_country_no: any = null;
-  selected_city_no: any;
+  selected_in_country_no: any = null ;
+  selected_in_city_no: any = null ;
+
+  selected_out_country_no: any = null ;
+  selected_out_city_no: any = null;
+
+  selected_in_country_name: any ;
+  selected_in_city_name: any  ;
+
+  selected_out_country_name: any ;
+  selected_out_city_name: any ;
+
+  citySelectCompleted: boolean = false ;
 
 
   constructor(private member: MemberComponent,
@@ -37,96 +50,86 @@ export class MakePlanComponent implements OnInit {
 
   getCountryList() {
     this.http.get(`http://localhost:3000/travel/country`)
+    .subscribe((item: any) => {
+      this.in_country_list = item;
+      this.out_country_list = item;
+    })
+  }
+  
+  getCityList(selected_country_no, se) {
+    this.http.get(`http://localhost:3000/travel/city/${selected_country_no}`)
       .subscribe((item: any) => {
-        this.country_list = item;
+        if( se==0 )
+          this.in_city_list = item;
+        else if ( se==1 ) 
+          this.out_city_list = item;
       })
   }
 
-  getCityList() {
-    if (this.selected_country_no == null)
+  getInCityList() {
+    if (this.selected_in_country_no == null)
       alert("please select country")
     else {
-      console.log("selected country no:", this.selected_country_no);
-      this.http.get(`http://localhost:3000/travel/city/${this.selected_country_no}`)
-        .subscribe((item: any) => {
-          this.city_list = item;
-        })
+      this.getCityList(this.selected_in_country_no, 0);
     }
   }
 
-  setCity() {
-    
+  getOutCityList() {
+    if (this.selected_out_country_no == null)
+      alert("please select country")
+    else {
+      this.getCityList(this.selected_out_country_no, 1);
+    }
   }
 
-  // setRegions() {
-  //   for (this.region in this.countries)
-  //     document.write('<option value="' + this.region + '">' + this.region + '</option>');
-  // }
+  setInOutCity() {
 
-  // set_country(oRegionSel, oCountrySel, oCity_StateSel) {
-  //   var countryArr;
-  //   oCountrySel.length = 0;
-  //   oCity_StateSel.length = 0;
-  //   var region = oRegionSel.options[oRegionSel.selectedIndex].text;
-  //   if (this.countries[region]) {
-  //     oCountrySel.disabled = false;
-  //     oCity_StateSel.disabled = true;
-  //     oCountrySel.options[0] = new Option('SELECT COUNTRY', '');
-  //     countryArr = this.countries[region].split('|');
-  //     for (var i = 0; i < countryArr.length; i++)
-  //       oCountrySel.options[i + 1] = new Option(countryArr[i], countryArr[i]);
-  //     document.getElementById('txtregion').innerHTML = region;
-  //     document.getElementById('txtplacename').innerHTML = '';
-  //   }
-  //   else oCountrySel.disabled = true;
-  // }
+    if( this.selected_in_city_no!=null
+        && this.selected_out_city_no!=null) {
+      
+      this.citySelectCompleted = true ;
 
-  // set_city_state(oCountrySel, oCity_StateSel) {
-  //   var city_stateArr;
-  //   oCity_StateSel.length = 0;
-  //   var country = oCountrySel.options[oCountrySel.selectedIndex].text;
-  //   if (this.city_states[country]) {
-  //     oCity_StateSel.disabled = false;
-  //     oCity_StateSel.options[0] = new Option('SELECT NEAREST DIVISION', '');
-  //     city_stateArr = this.city_states[country].split('|');
-  //     for (var i = 0; i < city_stateArr.length; i++)
-  //       oCity_StateSel.options[i + 1] = new Option(city_stateArr[i], city_stateArr[i]);
-  //     document.getElementById('txtplacename').innerHTML = country;
-  //   }
-  //   else oCity_StateSel.disabled = true;
-  // }
+      this.http.get(`http://localhost:3000/travel/setInOutCity/${this.selected_in_city_no}/${this.selected_out_city_no}`)
+                    .subscribe((item: any) => {
+        this.selected_in_country_name = item.in_country[0].name ;
+        this.selected_in_city_name = item.in_city[0].name ;
+        this.selected_out_country_name = item.out_country[0].name ;
+        this.selected_out_city_name = item.out_city[0].name ;
+      })
+    }
+  }
 
-  // print_city_state(oCountrySel, oCity_StateSel) {
-  //   var country = oCountrySel.options[oCountrySel.selectedIndex].text;
-  //   var city_state = oCity_StateSel.options[oCity_StateSel.selectedIndex].text;
-  //   if (city_state && this.city_states[country].indexOf(city_state) != -1)
-  //     document.getElementById('txtplacename').innerHTML = city_state + ', ' + country;
-  //   else document.getElementById('txtplacename').innerHTML = country;
-  // }
+  saveTravel() {
+    try {
+      // it not logined yet, throw error
+      this.curr_user = this.member.getCurrentUser();
 
-  // post() {
-  //   try {
-  //     this.curr_user = this.member.getCurrentUser() ;
+      let body = {
+        user_no: this.curr_user.user_no,
+        title: this.title,
+        description: this.description,
+        start_date: this.start_date,
+        end_date: this.end_date,
+        no_companion: this.no_companion,
+        in_city_no: this.selected_in_city_no,
+        out_city_no: this.selected_out_city_no
+      }
 
-  //     let body = {
-  //       user_no : this.curr_user.user_no,
-  //       title : this.title,
-  //       start_date : this.start_date,
-  //       end_date: this.end_date,
-  //       no_companion: this.no_companion 
-  //     }
+      this.http.post(`http://localhost:3000/travel/saveTravel/`, body)
+        .subscribe((item: any) => {
+          alert("Successfully posted");
+          this.description = '';
+          this.title = '';
+          this.router.navigate(['main', 'myPage']);
+        })
+    } catch (e) {
+      alert("please login to write");
+    }
+  }
 
-  //     this.http.post(`http://localhost:3000/board/post/${this.boardSel}`, body)
-  //     .subscribe( (item:any)=>{
-  //       alert("Successfully posted") ;
-  //       this.writing = false ;
-  //       this.user_written_title = '' ;
-  //       this.user_written_text = '';
-  //       this.router.navigate(['main','board']) ;
-  //       this.getPost() ;
-  //     })
-  //   } catch(e) {
-  //     alert("please login to write");
-  //   }
-  // }
+  toMakeWish() {
+    this.saveTravel() ;
+    this.router.navigate(['main', 'makeWish']);
+  }
+
 }

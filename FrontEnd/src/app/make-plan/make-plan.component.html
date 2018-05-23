@@ -1,112 +1,72 @@
-<!-- writing a post -->
+<!-- createing travel -->
 <div>
+
+
   <hr>
+  <br>
+  
   <div>
-    <select class="selection" [(ngModel)]="boardSel">
-      <option [value]="1">board1</option>
-      <option [value]="2">board2</option>
-      <option [value]="3">board3</option>
-    </select>
     writer : {{curr_user.id}}
   </div>
   <br>
 
-  <!-- 
-    <head>
-        <title>Region > Country > Division</title>
-        <style type="text/css">
-        
-        body {
-          background: rgb(218, 175, 175);
-        }
-        #widget {
-          width: 780px;
-          height: 480px;
-          font: normal 10px verdana;
-          text-align: center;
-          margin: 40px auto;
-          border: 5px #aaa;
-          border-style: outset inset inset outset;
-        }
-        form {
-          width: 98%;
-          margin: 200px 0 60px 0;
-        }
-        select {
-          width: 190px;
-          font: normal 11px verdana;
-          color: #fff;
-          background: #000;
-        }
-        #txtregion {
-          width: 98%;
-          height: 16px;
-          font: normal 12px verdana;
-          letter-spacing: .4em;
-          margin: auto;
-          border-bottom: 1px black solid;
-        }
-        #txtplacename {
-          width: 98%;
-          height: 16px;
-          font: normal 10px verdana;
-          margin: auto;
-        }
-        
-        </style>
-        </head>
-        <body>
-        <div id="widget">
-        <form>
-        
-        Region&raquo; 
-        <select onchange="set_country(this,country,city_state)" size="1" name="region">
-        <option value="" selected="selected">SELECT REGION</option>
-        <option *ngFor="let region of Countries" value="region">{{region}}</option>
-        setRegions(this);
-        </select>
-        
-        Country&raquo; 
-        <select name="country" size="1" disabled="disabled" onchange="set_city_state(this,city_state)"></select>
-        
-        City/State&raquo; 
-        <select name="city_state" size="1" disabled="disabled" onchange="print_city_state(country,this)"></select>
-        </form>
-        
-        <div id="txtregion"></div>
-        <div id="txtplacename"></div>
-        </div>
-        </body> -->
-
+  <hr>
   <div style='text-align:center;'>
-    Select Country &raquo;
-    <select [(ngModel)]="selected_country_no">
+    Select In-Country &raquo;
+    <select [(ngModel)]="selected_in_country_no">
       <option [value]="" selected="selected">SELECT COUNTRY</option>
-      <option [value]=country.country_no *ngFor="let country of country_list">{{country.name}}</option>
+      <option [value]=country.country_no *ngFor="let country of in_country_list">{{country.name}}</option>
     </select>
-    <button (click)="getCityList()">set country</button>
-    <br>
-    Select City &raquo;
-    <select [(ngModel)]="selected_city_no">
+    <button (click)="getInCityList()">set in-country</button>
+    <br> Select In-City &raquo;
+    <select [(ngModel)]="selected_in_city_no">
       <option [value]="" selected="selected">SELECT CITY</option>
-      <option [value]=city.city_no *ngFor="let city of city_list">{{city.name}}</option>
+      <option [value]=city.city_no *ngFor="let city of in_city_list">{{city.name}}</option>
     </select>
-    <button (click)="setCity()">set city</button>
     <br>
-    <hr>
   </div>
 
-  <div style="font-size:20px">----- start date -----</div>
+  <hr>
+  <div style='text-align:center;'>
+    Select Out-Country &raquo;
+    <select [(ngModel)]="selected_out_country_no">
+      <option [value]="" selected="selected">SELECT COUNTRY</option>
+      <option [value]=country.country_no *ngFor="let country of out_country_list">{{country.name}}</option>
+    </select>
+    <button (click)="getOutCityList()">set out-country</button>
+    <br> Select Out-City &raquo;
+    <select [(ngModel)]="selected_out_city_no">
+      <option [value]="" selected="selected">SELECT CITY</option>
+      <option [value]=city.city_no *ngFor="let city of out_city_list">{{city.name}}</option>
+    </select>
+    <br><br>
+    <button (click)="setInOutCity()">set in/out-city</button>
+    <div *ngIf="citySelectCompleted==true">
+      <br> START: {{selected_in_country_name}}- {{selected_in_city_name}}_city
+      <br> END: {{selected_out_country_name}}- {{selected_out_city_name}}_city
+    </div>
+  </div>
+
+  <hr>
+
+  <br>
+  <div style="font-size:20px">----- in date -----</div>
   <input type="date" id="item_input" [(ngModel)]="start_date">
-  <div style="font-size:20px">----- end date -----</div>
+  <div style="font-size:20px">----- out date -----</div>
   <input type="date" id="item_input" [(ngModel)]="end_date">
+  <hr>
   <div style="font-size:20px">----- companions -----</div>
   <input type="number" id="item_input" min="1" max="3000" [(ngModel)]="no_companion">
+  <hr>
   <div style="font-size:20px">----- title -----</div>
   <textarea class="textarea" cols="80" rows="2" [(ngModel)]="title"></textarea>
-  <div style="font-size:20px">----- contents -----</div>
-  <textarea class="textarea" cols="80" rows="30" [(ngModel)]="contents"></textarea>
+  <div style="font-size:20px">----- description -----</div>
+  <textarea class="textarea" cols="80" rows="30" [(ngModel)]="description"></textarea>
+  <hr>
   <br>
-  <button *ngIf="modifying!=true" class="write_button" (click)="nextStep()">Next Step</button>
-  <button *ngIf="modifying==true" class="write_button" (click)="nextStep()">Next Step</button>
+  <button *ngIf="modifying!=true" class="write_button" (click)="saveTravel()">Save Travel</button>
+  <button *ngIf="modifying!=true" class="write_button" (click)="toMakeWish()">Create Wishes for this Travel</button>
+  <button *ngIf="modifying==true" class="write_button" (click)="postModified()">Next Step</button>
+
+
 </div>

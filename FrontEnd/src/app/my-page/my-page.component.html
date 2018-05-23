@@ -19,7 +19,6 @@
   </div>
 </div>
 
-<input type="date" name="bday">
 
 <!-- user information -->
 <hr>
@@ -62,21 +61,21 @@
 </table>
 
 
-<!-- list of plans -->
-<hr>
+<!-- list of travels -->
+<hr size="5" color=#000000>
 <table>
-  <thead class="table_head">Plans</thead>
+  <thead class="table_head">Travels</thead>
   <thead>
     <th class="no">no</th>
-    <th class="written date">start</th>    
+    <th class="written date">start</th>
     <th class="title">title</th>
     <th></th>
     <th></th>
     <th class="writer">start</th>
     <th class="date">end</th>
   </thead>
-  <tbody>
-    <tr *ngFor="let travel of travel_list">
+  <tbody *ngFor="let travel of travel_list">
+    <tr>
       <td>{{travel.travel_no}}</td>
       <td>{{travel.written_date}}</td>
       <td class="clickAvailable" (click)="toPost(post)">
@@ -93,6 +92,25 @@
       <td>{{travel.start_date}}</td>
       <td>{{travel.end_date}}</td>
     </tr>
+    <hr>
+    {{wish_list}}=getWishes(1) ;
+    <tr *ngFor="let wish of wish_list">
+      <td>{{wish.wish_no}}2111</td>
+      <td>{{wish.written_date}}</td>
+      <td class="clickAvailable" (click)="toPost(post)">
+        {{wish.title}}
+      </td>
+      <td>
+        <!-- modify plan -->
+        <!-- <button *ngIf="ifMyPost(travel.user_id)" (click)="modify(travel)">modify</button> -->
+      </td>
+      <td>
+        <!-- delete plan -->
+        <!-- <button *ngIf="ifMyPost(travel.user_id)" (click)="delete(travel.travel_no)">delete</button> -->
+      </td>
+      <td>{{wish.start_date}}</td>
+      <td>{{wish.end_date}}</td>
+    </tr>
   </tbody>
 </table>
 
@@ -103,42 +121,7 @@
 </div>
 
 <!-- list of Reviews -->
-<hr>
-<table>
-  <thead>Reviews</thead>
-  <thead>
-    <th class="no">no</th>
-    <th class="title">title</th>
-    <th></th>
-    <th></th>
-    <th class="writer">wirter</th>
-    <th class="date">date</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let post of post_list">
-      <td>{{post.post_no}}</td>
-      <td class="clickAvailable" (click)="toPost(post)">
-        {{post.post_title}}
-      </td>
-      <td>
-        <!-- modify post -->
-        <button *ngIf="ifMyPost(post.user_id)" (click)="modify(post)">modify</button>
-      </td>
-      <td>
-        <!-- delete post -->
-        <button *ngIf="ifMyPost(post.user_id)" (click)="delete(post.post_no)">delete</button>
-      </td>
-      <td>{{post.user_id}}</td>
-      <td>{{post.written_date}}</td>
-    </tr>
-  </tbody>
-</table>
 
-<div class="postPage">
-  <button class="pagingButton" (click)="toPrevPostPage()">prev</button>
-  {{post_page_no}}
-  <button class="pagingButton" (click)="toNextPostPage()">next</button>
-</div>
 
 <!-- list of likes -->
 <hr>
@@ -178,7 +161,9 @@
   <button class="pagingButton" (click)="toNextPostPage()">next</button>
 </div>
 
-<br><br><br>
+<br>
+<br>
+<br>
 <hr>
 <!-- search post -->
 <div class="searchArea">

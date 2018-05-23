@@ -16,13 +16,13 @@ import { MemberIdentifyComponent } from './member-identify/member-identify.compo
 import { MemberComponent } from './member/member.component';
 import { MyPageComponent } from './my-page/my-page.component';
 import { MakePlanComponent } from './make-plan/make-plan.component';
+import { MakeWishComponent } from './make-wish/make-wish.component';
 
 import { BoardComponent } from './board/board.component';
 import { NewPostComponent } from './new-post/new-post.component';
 
 import { HttpService } from '../services/http.service';
 import { HttpModule } from '@angular/http';
-import { MakeWishComponent } from './make-wish/make-wish.component';
 
 const appRoutes:Routes = [
   {
@@ -66,11 +66,17 @@ const appRoutes:Routes = [
       {
         path: 'makePlan',
         component: MakePlanComponent
+      },
+      {
+        path: 'makeWish',
+        component: MakeWishComponent
       }
     ]
   },
 
 ]
+
+
 
 @NgModule({
   declarations: [

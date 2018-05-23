@@ -9,7 +9,7 @@
 </div>
 
 <div class="user" *ngIf="userName!=null && userName!=undefined && userName!='' ">
-  <span class="userName">{{userName}}  </span>
+  <span class="userName">{{userName}} </span>
   <button class="logoutButton" (click)="logout()">logout</button>
   <span class="toMain" (click)="toMain()">Home</span>
 </div>
@@ -17,10 +17,10 @@
 
 <!-- top banner -->
 <!-- <div class="topBanner" (click)="toMakePlan()">Make Plan</div> -->
+<button class="planning" (click)="toTravel()">TRAVEL</button>
+<button class="planning" (click)="toMakeWish()">WISH</button>
 
 <img class="img" src="/assets/img/seashore.jpg">
-<button class="travel" (click)="toTravel()">travel</button>
-
 
 <!-- L top -->
 <div class="LPannel">
@@ -28,7 +28,7 @@
   <div class="cafeInfo">
     <div class="cafeInfoHead">{{userName}}</div>
     <div class="cafeInfoDetailsSub">{{userId}}</div>
-    <hr width = 70 align=left >
+    <hr width=70 align=left>
     <div class="cafeInfoDetails">
       <div class="cafeInfoDetail">Plans</div>
       <div class="cafeInfoDetailsSub">00 plans</div>
@@ -41,10 +41,10 @@
       <div class="cafeInfoDetail">Like</div>
       <div class="cafeInfoDetailsSub">00 likes</div>
     </div>
-    <hr width = 70 align=left >
-        <!-- TODO: click MYPAGE -> move to MY_PAGE -->
+    <hr width=70 align=left>
+    <!-- TODO: click MYPAGE -> move to MY_PAGE -->
     <div class="cafeInfoDetails">
-      <div class="cafeInfoDetailsSub" id="MyPage" (click)="toMyPage()" >My Page</div>
+      <div class="cafeInfoDetailsSub" id="MyPage" (click)="toMyPage()">My Page</div>
     </div>
   </div>
 

@@ -1,3 +1,63 @@
-<p>
-  make-wish works!
-</p>
+<!-- createing wish -->
+<div>
+
+  <div>
+    Select Travel &raquo;
+    <select class="selection" [(ngModel)]="travel_no">
+      <option [value]=travel.travel_no *ngFor="let travel of travel_list">{{travel.title}}</option>
+    </select>
+  </div>
+
+  <hr>
+  <br>
+  <div>
+    writer : {{curr_user.id}}
+  </div>
+  <br>
+
+  <hr>
+  <div style='text-align:center;'>
+    Select Country &raquo;
+    <select [(ngModel)]="selected_country_no">
+      <option [value]="" selected="selected">SELECT COUNTRY</option>
+      <option [value]=country.country_no *ngFor="let country of country_list">{{country.name}}</option>
+    </select>
+    <button (click)="getCityList()">set country</button>
+    <br> Select City &raquo;
+    <select [(ngModel)]="selected_city_no">
+      <option [value]="" selected="selected">SELECT CITY</option>
+      <option [value]=city.city_no *ngFor="let city of city_list">{{city.name}}</option>
+    </select>
+    <button (click)="setCity()">set city</button>
+    <br>
+    <div *ngIf="citySelectCompleted==true">
+      <br> let's go: {{selected_country_name}}-{{selected_city_name}}_city
+    </div>
+  </div>
+
+  <hr>
+
+  <br>
+  <div style="font-size:20px">----- start date -----</div>
+  <input type="date" id="item_input" [(ngModel)]="start_date">
+  <div style="font-size:20px">----- end date -----</div>
+  <input type="date" id="item_input" [(ngModel)]="end_date">
+  <hr>
+  <div style="font-size:20px">----- category -----</div>
+  <select class="selection" [(ngModel)]="category_no">
+    <option [value]=category.category_no *ngFor="let category of category_list">{{category.name}}</option>
+  </select>
+  <hr>
+  <div style="font-size:20px">----- cost -----</div>
+  <input type="number" [(ngModel)]="cost">
+  <hr>
+  <div style="font-size:20px">----- title -----</div>
+  <textarea class="textarea" cols="80" rows="2" [(ngModel)]="title"></textarea>
+  <div style="font-size:20px">----- description -----</div>
+  <textarea class="textarea" cols="80" rows="30" [(ngModel)]="description"></textarea>
+  <hr>
+  <br>
+  <button class="write_button" (click)="saveWish()">Save wish</button>
+
+
+</div>

@@ -33,6 +33,11 @@ export class MemberInfoComponent implements OnInit {
     if( this.curr_user!=null ){
       this.name = this.curr_user.name ;
       this.id = this.curr_user.id ;
+      this.age = this.curr_user.age ;
+      this.gender = this.curr_user.gender ;
+      this.birth = this.curr_user.birth ;
+      this.email = this.curr_user.email ;
+      this.phone = this.curr_user.phone ;
       this.ifNew = false ;
     }
   }
@@ -133,7 +138,12 @@ export class MemberInfoComponent implements OnInit {
     let body = {
       name: name,
       id: id,
-      pwd: pwd
+      pwd: pwd,
+      age: this.age,
+      gender: this.gender,
+      birth: this.birth,
+      phone: this.phone,
+      email: this.email
     }
     this.http.post(`http://localhost:3000/members/modify/${this.curr_user.user_no}`, body)
     .subscribe( (item:any)=> {

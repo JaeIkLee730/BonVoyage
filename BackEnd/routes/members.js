@@ -14,15 +14,15 @@ var connection = mysql.createConnection({
 // counting num of members
 router.get('/', function(req, res, next){
 
-  // var sql = "select * from linux.users" ;
+    // var sql = "select * from linux.users" ;
 
-  var sql = "select count(*) 'cnt' from BonVoyage.users" ;
-  //  count(*) 라는 이름으로 넘어온다 - 불편 - cnt라는 이름으로 바꿔서 넘겨준다
+    var sql = "select count(*) 'cnt' from BonVoyage.users" ;
+    //  count(*) 라는 이름으로 넘어온다 - 불편 - cnt라는 이름으로 바꿔서 넘겨준다
 
-  connection.query( sql, function(error, result, fields){
-    if(error) throw error ;
-    res.send(result) ;
-  });
+    connection.query( sql, function(error, result, fields){
+        if(error) throw error ;
+        res.send(result) ;
+    });
 });
 
 // login
@@ -74,24 +74,38 @@ router.post('/modify/:no', function(req, res, next) {
     var name = req.body.name ;
     var id = req.body.id ;
     var pwd = req.body.pwd ;
+    var age = req.body.age ;
+    var gender = req.body.gender ;
+    var birth = req.body.birth ;
+    var phone = req.body.phone ;
+    var email = req.body.email ;
+
     var user = {
         user_no : user_no,
         name : name,
         id : id,
-        pwd : pwd
+        pwd : pwd,
+        age: age,
+        gender: gender,
+        birth: birth,
+        phone: phone,
+        email: email
     }
 
     var sql = "update BonVoyage.users "
         + "set name=?, "
         + "id=?, "
-        + "pwd=? "
+        + "pwd=?, "
+        + "age=?, "
+        + "gender=?, "
+        + "birth=?, "
+        + "phone=?, "
+        + "email=? "
         + "where user_no="
         + user_no
         + ";" ;
 
-    console.log("sql : ",sql);
-
-    connection.query(sql, [name, id, pwd], function (error, results, fields) {
+    connection.query(sql, [name, id, pwd, age, gender, birth, phone, email], function (error, results, fields) {
         if (error) throw error;
         res.send(user);
     });
@@ -117,7 +131,7 @@ router.post('/redundancy/', function(req, res){
 // delete member, withdrawal
 router.delete('/:no', function(req, res) {
    var user_no = req.params.no ;
-   var sql = "delete from BonVoyage.users where user_no=?"
+   var sql = "delete from BonVoyage.users where user_no=?" ;
 
     connection.query(sql, [user_no], function(error, result, fields) {
        if(error) throw error

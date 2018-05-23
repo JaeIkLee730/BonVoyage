@@ -43,6 +43,9 @@ export class MainComponent implements OnInit {
     // blnak - connect to path:''
   }
 
+
+  // identify_type==0 : withdrawal
+  // identify_type==1 : modification
   toIdentifyPage( identify_type ) {
     try {
       this.curr_user = this.member.getCurrentUser() ;
@@ -58,6 +61,10 @@ export class MainComponent implements OnInit {
 
   toTravel() {
     this.router.navigate(['main','makePlan']) ;
+  }
+
+  toMakeWish() {
+    this.router.navigate(['main','makeWish']) ;
   }
 
   numMembers() {
@@ -86,8 +93,7 @@ export class MainComponent implements OnInit {
     this.router.navigate(['join']) ;
   }
 
-  // identify_type==0 : withdrawal
-  // identify_type==1 : modification
+
 
 
 }
