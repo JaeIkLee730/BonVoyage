@@ -92,10 +92,24 @@
       <td>{{travel.start_date}}</td>
       <td>{{travel.end_date}}</td>
     </tr>
-    <hr>
-    {{wish_list}}=getWishes(1) ;
-    <tr *ngFor="let wish of wish_list">
-      <td>{{wish.wish_no}}2111</td>
+</table>
+
+<!-- list of wishes -->
+<hr size="5" color=#000000>
+<table>
+  <thead class="table_head">Wishes</thead>
+  <thead>
+    <th class="no">no</th>
+    <th class="written date">start</th>
+    <th class="title">title</th>
+    <th></th>
+    <th></th>
+    <th class="writer">start</th>
+    <th class="date">end</th>
+  </thead>
+  <tbody *ngFor="let wish of wish_list">
+    <tr>
+      <td>{{wish.wish_no}}</td>
       <td>{{wish.written_date}}</td>
       <td class="clickAvailable" (click)="toPost(post)">
         {{wish.title}}
@@ -111,8 +125,9 @@
       <td>{{wish.start_date}}</td>
       <td>{{wish.end_date}}</td>
     </tr>
-  </tbody>
 </table>
+
+
 
 <div class="postPage">
   <button class="pagingButton" (click)="toPrevPostPage()">prev</button>

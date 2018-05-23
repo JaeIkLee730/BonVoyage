@@ -26,6 +26,7 @@ export class MyPageComponent implements OnInit {
   ngOnInit() {
     this.curr_user = this.member.getCurrentUser() ;
     this.getTravel() ;
+    this.getWishes() ;
   }
 
   getTravel() {
@@ -47,15 +48,13 @@ export class MyPageComponent implements OnInit {
     }
   }
 
-  getWishes( travel_no: any ) {
-    console.log("travel_no: ", travel_no) ;
+  getWishes() {
     if( this.current_travel_no==0 ) {
       this.router.navigate(['main'])
     } else {
       this.http
       .get(`http://localhost:3000/travel/user_wish/`
             + `${this.curr_user.user_no}/`
-            + `${travel_no}/`
             + `${this.start_no}/`
             + `${this.display_no}`)
       .subscribe( (item:any)=> {

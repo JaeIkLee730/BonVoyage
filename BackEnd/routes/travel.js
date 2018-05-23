@@ -46,12 +46,11 @@ router.get('/user_travel/:user_no/:start_no/:display_no', function(req, res, nex
 });
 
 // getting certain user's certain travel's wishes
-router.get('/user_wish/:user_no/:travel_no/:start_no/:display_no', function(req, res, next){
+router.get('/user_wish/:user_no/:start_no/:display_no', function(req, res, next){
 
+    var user_no = req.params.user_no ;
     var start_no = req.params.start_no ;
     var display_no = req.params.display_no ;
-    var user_no = req.params.user_no ;
-    var travel_no = req.params.travel_no ;
 
     var resultList = {
         wish_cnt : 0,
@@ -62,17 +61,21 @@ router.get('/user_wish/:user_no/:travel_no/:start_no/:display_no', function(req,
 
     var sql2 = "select * from BonVoyage.wish"
         + " where user_no=" + user_no
-        + " and travel_no=" + travel_no
-        + " order by wish asc;" ;
+        + " order by start_date asc"
+        + " limit "
+        + start_no
+        + ","
+        + display_no
+        + ";" ;
 
 
     connection.query(sql1, [user_no], function(error, result, fields) {
         if( error ) throw error ;
-        resultList.travel_cnt = result ;
+        resultList.wish_cnt = result ;
 
         connection.query(sql2, [user_no], function(error, results, fields) {
             if( error ) throw error ;
-            resultList.travel_list = results ;
+            resultList.wish_list = results ;
             res.send(resultList) ;
         });
     });
